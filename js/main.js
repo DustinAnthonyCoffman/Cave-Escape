@@ -4,15 +4,9 @@ let dangerButton = document.querySelectorAll('.danger');
 let safetyButton = document.querySelectorAll('.safe');
 
 
+
 /*----- app's state (variables) -----*/
-let health = document.querySelectorAll('.health');
-let charHealth = health.textContent;
-let thisHealth = health.innerText
-let myHealth = health.innerHTML;
-// console.log(health);
-// console.log(charHealth);
-// console.log(thisHealth);
-// console.log(myHealth)
+
 
 /*----- cached element references -----*/
 let satchel = [];
@@ -28,26 +22,30 @@ let currentRoom = 'safe';
 
 
 
-function reduceHealth (currentRoom, playerHealth) {
+function reduceHealth () {
     currentRoom = 'danger';
-    if (currentRoom !== 'safe' || playerHealth !== 0) {
-    console.log('you are dying');
-    playerHealth - 5;
-    console.log(playerHealth);
-    }
+    let deathTimer2 = setInterval(function() {
+        if (currentRoom === 'danger') {
+            playerHealth -= 5;
+            console.log('you are dying', playerHealth);
+        }
+        else {
+            clearInterval(deathTimer2);
+        }  
+    }, 2000);    
 };
 
-function reachSafety(currentRoom, playerHealth) {
+
+function reachSafety() {
     currentRoom = 'safe';
-    clearInterval(deathTimer)
-    alert('you are safe!! ' + playerHealth)
+    alert('you are safe!! ' + playerHealth);
 };
 
-let deathTimer = setInterval(reduceHealth, 5000);
+
 
 function buttonInit() {      //initialize all buttons for click
     dangerButton.forEach( elem =>{
-        elem.addEventListener('click', deathTimer);
+        elem.addEventListener('click', reduceHealth);
     })
     safetyButton.forEach( elem =>{
         elem.addEventListener('click', reachSafety);
@@ -64,4 +62,3 @@ function grabItem(item) {
 
 
 /*----- event listeners -----*/
-
