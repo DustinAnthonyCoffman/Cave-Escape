@@ -1,0 +1,38 @@
+
+body {
+    margin: 0;
+    height:100%;
+    width:100%;
+    padding:0;
+}
+#main { 
+    display: block;
+    background-image: url('https://i.imgur.com/U85hO7q.jpg');
+    height: 100vh;
+}
+#left {
+    display: block;
+    background-image: url('https://i.imgur.com/IJoK3xn.jpg');
+    height: 100vh;
+}
+#right {
+    display: block;
+    background-image: url('https://i.imgur.com/Bi0Gt2S.jpg');
+    height: 100vh;
+}
+#top {
+    display: block;
+    background-image: url('https://i.imgur.com/1l9sXHP.jpg');
+    height: 100vh;
+}
+#bottom {
+    display: block;
+    
+    background-image: url('https://i.imgur.com/l3xv82F.jpg');
+    height: 100vh;
+}
+
+  .health {
+
+      color: red;
+  }
