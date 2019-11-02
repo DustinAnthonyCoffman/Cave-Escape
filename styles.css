@@ -7,46 +7,120 @@ body {
 }
 #main { 
     display: block;
-    background-image: url('https://i.imgur.com/U85hO7q.jpg');
-    height: 100vh;
+    background-image: url('https://i.imgur.com/dBZ4BNu.jpg');
+    height: 100vh; 
+
 }
 #left {
     display: block;
-    background-image: url('https://i.imgur.com/IJoK3xn.jpg');
+    background-image: url('https://i.imgur.com/xgGQud5.jpg');
     height: 100vh;
+    background-position-y: -20rem;
 }
 #right {
     display: block;
-    background-image: url('https://i.imgur.com/Bi0Gt2S.jpg');
+    background-image: url('https://i.imgur.com/Q8VDpGH.jpg');
     height: 100vh;
 }
 #top {
     display: block;
-    background-image: url('https://i.imgur.com/1l9sXHP.jpg');
+    background-image: url('https://i.imgur.com/u3SKTfg.jpg');
     height: 100vh;
+    background-position-y: -15rem;
+
 }
 #bottom {
     display: block;
-    
-    background-image: url('https://i.imgur.com/l3xv82F.jpg');
+    background-image: url('https://i.imgur.com/PZVAg02.png');
     height: 100vh;
+    background-position-y: -14rem;
+
 }
 
   .health {
       position: absolute;
-      top: 200px;
+      top: 43px;
+      left: 370px;
+      margin: auto;  
+      color: rgb(95, 0, 144);
+      font-size: 3rem;
+  }
+  .label {
+      position: absolute;
+      color: rgb(95, 0, 144);
       left: 200px;
-      color: red;
+      font-size: 3rem;
   }
-  .topHealth {
-    color: red;
-  }
-  .bottomHealth {
-    color: red;
-  }
-  .rightHealth {
-    color: red;
-  }
-  .leftHealth {
-    color: red;
+  .safe {
+        box-shadow:inset 0px 1px 3px 0px #91b8b3;
+        background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+        background-color:#768d87;
+        border-radius:5px;
+        border:1px solid #566963;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:15px;
+        font-weight:bold;
+        padding:11px 23px;
+        text-decoration:none;
+        text-shadow:0px -1px 0px #2b665e;
+    }
+    .safe:hover {
+        background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+        background-color:#6c7c7c;
+    }
+    .safe:active {
+        position:relative;
+        top:1px;
+    }
+
+    .danger {
+        box-shadow:inset 0px 1px 3px 0px #91b8b3;
+        background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+        background-color:#768d87;
+        border-radius:5px;
+        border:1px solid #566963;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:15px;
+        font-weight:bold;
+        padding:11px 23px;
+        text-decoration:none;
+        text-shadow:0px -1px 0px #2b665e;
+
+    }
+    .danger:hover {
+        background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+        background-color:#6c7c7c;
+    }
+    .danger:active {
+        position:relative;
+        top:1px;
+    }
+    .exit {
+        position: absolute;
+        top: 410px;
+        left: 220px;
+        height: 120px;
+        border: solid black;
+    }
+    .exit:hover {
+        cursor: pointer;
+    }
+
+  #foot {
+    position: fixed;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    left: 0px;
+    bottom:0px;
+    height:130px;
+    width:100%;
+    background:#999;
+    border: solid black;
   }
