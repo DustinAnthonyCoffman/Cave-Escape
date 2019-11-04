@@ -8,7 +8,7 @@ let aTags = document.querySelectorAll('a');
 let story = document.querySelector('.typewriter');
 let items = document.querySelectorAll('.item');
 let enemies = document.querySelectorAll('.enemy');
-
+let satchelMenu = document.querySelector('.satchelMenu');
 
 
 
@@ -70,6 +70,7 @@ function updateStory(evt) {
     let snakeState = document.getElementById('snake');
     let bearState = document.getElementById('bear');
     let batState = document.getElementById('bat');
+    let safeState = document.getElementById('safe');
    
     switch(screen) {
         case '#bottom':
@@ -117,12 +118,16 @@ function updateStory(evt) {
             break;
 
         case '#crystals':
+                if (safeState.style.display === 'none') {
+                    story.textContent = "Handy little raft inside, what can I use this for?";
+                    break;
+
+                }
             story.textContent = "looks like there's a safe in here";
             break;
     }
 
 };
-
 
 function buttonInit() {      //initialize all buttons for click
     dangerButton.forEach( elem =>{
@@ -141,6 +146,7 @@ function buttonInit() {      //initialize all buttons for click
         elem.addEventListener('click', attack);
     })
 };
+
 buttonInit();
 
 function attack(enemy) {
@@ -172,7 +178,6 @@ function attack(enemy) {
                     currentRoom = 'safe';
                     let topRoom = document.getElementById('topRoom');
                     topRoom.removeEventListener('click', reduceHealth);
-                    //change atag to be a different class
                     break;       
                 }
                 story.textContent = "The snake plunges it's fangs into you, you cry out";
@@ -188,7 +193,6 @@ function attack(enemy) {
                     currentRoom = 'safe';
                     let rightRoom = document.getElementById('rightRoom');
                     rightRoom.removeEventListener('click', reduceHealth);
-                    //change a tag to be a different class
                     break;
                 }
                     story.textContent = "The beast mauls you over and over";
@@ -201,13 +205,15 @@ function attack(enemy) {
 function grabItem(item) {
     let thisItem = item.target.getAttribute('id');
     let itemImage = item.target;
-    console.log(thisItem);
     switch(thisItem) {
         case 'spear':
             story.textContent = "You have grabbed a spear!";
             satchel.push(spear);
             itemImage.style.display='none';
-            console.log(satchel);
+            let satchelSpear = document.createElement('P');
+            satchelSpear.textContent = 'spear';
+            satchelSpear.display = 'inline';
+            satchelMenu.appendChild(satchelSpear);
             break;
         case 'raft':
             if(player !== 'satchel') {
@@ -217,16 +223,28 @@ function grabItem(item) {
             story.textContent = "You have grabbed a raft!";
             satchel.push(raft);
             itemImage.style.display='none';
+            let satchelRaft = document.createElement('P');
+            satchelRaft.textContent = 'raft';
+            satchelRaft.display = 'inline';
+            satchelMenu.appendChild(satchelRaft);
             break;
         case 'key':
             story.textContent = "You have grabbed a key!";
             satchel.push(key);
             itemImage.style.display='none';
+            let satchelKey = document.createElement('P');
+            satchelKey.textContent = 'key';
+            satchelKey.display = 'inline';
+            satchelMenu.appendChild(satchelKey);
             break;
         case 'torch':
             story.textContent = "You have grabbed a torch!";
             satchel.push(torch);
             itemImage.style.display='none';
+            let satchelTorch = document.createElement('P');
+            satchelTorch.textContent = 'torch';
+            satchelTorch.display = 'inline';
+            satchelMenu.appendChild(satchelTorch);
             break;
         case 'satchel':
             story.textContent = "You have grabbed a satchel! You can now store 1 item at a time";
@@ -239,6 +257,7 @@ function grabItem(item) {
              else {
                  story.textContent = "I'm not into reading, I hope I don't die in here...";
              }
+             //footer gets satchel image?? or satchel h2?? ? ? 
              break;
         case 'safe':
            let safeAnswer = prompt('Enter the safe combination:');

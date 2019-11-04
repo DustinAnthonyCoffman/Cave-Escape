@@ -239,7 +239,11 @@ border: solid black;
 font-family: Courier, monospace;
 display: inline-block;
 }
+  .satchelMenu {
+      position: absolute;
 
+
+  }
 
 
   .health {
