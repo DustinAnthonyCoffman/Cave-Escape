@@ -9,46 +9,79 @@
     <title>Cave Escape</title>
 </head>
 
-<body scroll="no" style="overflow: hidden">
+<body>
 
-        
+       
     <section id='main'>
-      
+    
             <button class='danger'><a href='#top'>▲top</a> </button>
             <button class='danger'><a href='#bottom'>▲bottom</a> </button>
             <button class='danger'><a href='#left'>▲left</a> </button>
             <button class='danger'><a href='#right'>▲right</a> </button>
-            <div class='exit'><p>heyeheyeheyehyeheehy</p></div>
+           
+            
+
+                <a id="secretRoom" class='blinker' href='#secret'>▲</a> </button>
+
+           
         </section> 
 
     <section id='top'> 
             
-         
+          <img class='enemy' src="https://i.imgur.com/t9ReHQR.png" alt="snake"> 
+          <img class='item' src="https://i.imgur.com/t9ReHQR.png" alt="torch"> 
             <button class = 'safe'> <a href='#main'> ▲Back </a> </button>
             
         </section>
 
     <section id='left'> 
-          
+            <img class='enemy' src="https://i.imgur.com/t9ReHQR.png" alt="bat"> 
+            <img class='item' src="https://i.imgur.com/t9ReHQR.png" alt="spear"> 
             <button class='safe'> <a href='#main'> ▲Back </a> </button>
 
         </section> 
 
     <section id='right'> 
-          
+            <img class='enemy' src="https://i.imgur.com/t9ReHQR.png" alt="bear"> 
             <button class='safe'> <a href='#main'> ▲Back </a> </button>
 
         </section> 
     
-        <section id='bottom'>
+    <section id='bottom'>
+               
+            <img class='item' src="https://i.imgur.com/t9ReHQR.png" alt="raft"> 
+            <a id='crystalPath' class='blinker' href='#crystals'>▲</a> </button>
+            <button class='safe'> <a href='#main'> ▲Back </a> </button>
+          
+        </section> 
+       
+    <section id='secret'>
                
             <button class='safe'> <a href='#main'> ▲Back </a> </button>
+            <img class='item' src="https://i.imgur.com/t9ReHQR.png" alt="satchel"> 
+            <a id="secretPath" class='blinker' href='#drawing'>▲</a> </button>
+    
+            </section> 
+           
+    <section id='drawing'>
+               
+            <button class='safe'> <a id="drawingRoom" href='#secret'> ▲Back </a> </button>
+        
+            </section> 
+            
+    <section id='crystals'>
+               
+            <button class='safe'> <a href='#bottom'> ▲Back </a> </button>
+            <img class='item' src="https://i.imgur.com/t9ReHQR.png" alt="raft"> 
+                        
+    
+            </section> 
 
-        </section> 
 
     <footer id= 'foot'>
         <h2 class='label'>Health:</h2>    
         <h2 class = 'health'>100</h2>
+        <div class= 'footerBox'> <p class= 'typewriter'>I must get out of this cave...</p> </div>
         </footer>
 </body>
 </html>

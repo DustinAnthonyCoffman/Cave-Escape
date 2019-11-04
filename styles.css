@@ -4,7 +4,11 @@ body {
     height:100%;
     width:100%;
     padding:0;
+    scroll: none;
+    overflow: hidden;
 }
+
+/* ------ Section Styles --------*/
 #main { 
     display: block;
     background-image: url('https://i.imgur.com/dBZ4BNu.jpg');
@@ -15,32 +19,165 @@ body {
     display: block;
     background-image: url('https://i.imgur.com/xgGQud5.jpg');
     height: 100vh;
-    background-position-y: -20rem;
+    background-position-y: -10rem;
 }
 #right {
     display: block;
-    background-image: url('https://i.imgur.com/Q8VDpGH.jpg');
+    background-image: url('https://i.imgur.com/KmJ6EVM.jpg');
     height: 100vh;
 }
 #top {
     display: block;
-    background-image: url('https://i.imgur.com/u3SKTfg.jpg');
+    background-image: url('https://i.imgur.com/ph3VYBv.jpg');
     height: 100vh;
-    background-position-y: -15rem;
+    background-position-y: -23rem;
 
 }
 #bottom {
     display: block;
     background-image: url('https://i.imgur.com/PZVAg02.png');
     height: 100vh;
-    background-position-y: -14rem;
+    background-position-y: -12rem;
+}
+
+#secret{
+    display: block;
+    background-image: url('https://i.imgur.com/DxQ9HGi.jpg');
+    height: 100vh;
+    background-position-y: -5rem;
 
 }
+
+#drawing{
+    display: block;
+    background-image: url('https://i.imgur.com/P9AHqwW.jpg');
+    height: 100vh;
+ 
+
+}
+#crystals{
+    display: block;
+    background-image: url('https://i.imgur.com/U4odL4B.jpg');
+    height: 100vh;
+ 
+}
+/*------ Items -------*/
+.item {
+    position: absolute;
+    display: block;
+    left: 500px;
+}
+.item:hover {
+    
+}
+
+
+
+
+
+
+/*------ Buttons -------*/
+.blinker {
+    font-size: 30px;
+    color: white;
+    animation: blinker .7s cubic-bezier(.5, 0, 1, 1) infinite alternate;  
+}
+@keyframes blinker { to { opacity: 0; } }
+
+#secretRoom {
+    position: absolute;
+    top: 500px;
+    left: 300px;
+}
+
+#secretPath {
+    position: absolute;
+    left: 650px;
+}
+
+#crystalPath {
+    position: absolute;
+    right: 800px;
+}
+
+.safe {
+    box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    background-color:#768d87;
+    border-radius:5px; 
+    border:1px solid #566963;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:11px 23px; 
+    text-decoration:none;
+    text-shadow:0px -1px 0px #2b665e;
+}
+
+.safe:hover {
+    background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+    background-color:#6c7c7c;
+}
+
+.safe:active {
+    position:relative;
+    top:1px;
+}
+
+.danger {
+    box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    background-color:#768d87;
+    border-radius:5px;
+    border:1px solid #566963;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:11px 23px;
+    text-decoration:none;
+    text-shadow:0px -1px 0px #2b665e;
+
+}
+.danger:hover {
+    background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+    background-color:#6c7c7c;
+}
+.danger:active {
+    position:relative;
+    top:1px;
+}
+
+
+
+
+/*------- Footer ------- */
+#foot {
+position: fixed;
+text-align: center;
+justify-content: center;
+margin: auto;
+left: 0px;
+bottom:0px;
+height:130px;
+width:100%;
+background:rgba(54, 44, 44, 0.8);
+border: solid black;
+font-family: Courier, monospace;
+display: inline-block;
+}
+
+
 
   .health {
       position: absolute;
       top: 43px;
-      left: 370px;
+      left: 270px;
       margin: auto;  
       color: rgb(95, 0, 144);
       font-size: 3rem;
@@ -48,79 +185,57 @@ body {
   .label {
       position: absolute;
       color: rgb(95, 0, 144);
-      left: 200px;
+      left: 50px;
       font-size: 3rem;
   }
-  .safe {
-        box-shadow:inset 0px 1px 3px 0px #91b8b3;
-        background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
-        background-color:#768d87;
-        border-radius:5px;
-        border:1px solid #566963;
-        display:inline-block;
-        cursor:pointer;
-        color:#ffffff;
-        font-family:Arial;
-        font-size:15px;
-        font-weight:bold;
-        padding:11px 23px;
-        text-decoration:none;
-        text-shadow:0px -1px 0px #2b665e;
-    }
-    .safe:hover {
-        background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-        background-color:#6c7c7c;
-    }
-    .safe:active {
-        position:relative;
-        top:1px;
-    }
-
-    .danger {
-        box-shadow:inset 0px 1px 3px 0px #91b8b3;
-        background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
-        background-color:#768d87;
-        border-radius:5px;
-        border:1px solid #566963;
-        display:inline-block;
-        cursor:pointer;
-        color:#ffffff;
-        font-family:Arial;
-        font-size:15px;
-        font-weight:bold;
-        padding:11px 23px;
-        text-decoration:none;
-        text-shadow:0px -1px 0px #2b665e;
-
-    }
-    .danger:hover {
-        background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
-        background-color:#6c7c7c;
-    }
-    .danger:active {
-        position:relative;
-        top:1px;
-    }
+  
+    /* you might need this for hints 
     .exit {
         position: absolute;
         top: 410px;
         left: 220px;
         height: 120px;
-        border: solid black;
-    }
-    .exit:hover {
-        cursor: pointer;
     }
 
-  #foot {
-    position: fixed;
-    text-align: center;
-    justify-content: center;
-    margin: auto;
-    left: 0px;
-    bottom:0px;
-    height:130px;
-    width:100%;
-    background:#999;
-    border: solid black;
+    a:hover + .exit {
+        display: block;
+        cursor: pointer;
+        border: solid gold;
+    }
+    */
+ 
+  .footerBox {
+      position: absolute;
+      left: 380px;
+
   }
+
+.typewriter{
+    display: inline-block;
+  	overflow: hidden;
+  	letter-spacing: 2px;
+ 	animation: typing 3s steps(30, end), blink .75s step-end infinite;
+    white-space: nowrap;
+    font-size: 30px;
+    font-weight: 700;
+    border-right: 4px solid orange;
+    box-sizing: border-box;
+}
+
+@keyframes typing {
+    from { 
+        width: 0% 
+    }
+    to { 
+        width: 100% 
+    }
+}
+
+@keyframes blink {
+    from, to { 
+        border-color: transparent 
+    }
+    50% { 
+        border-color: orange; 
+    }
+}
