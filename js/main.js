@@ -3,8 +3,6 @@
 let dangerButton = document.querySelectorAll('.danger');
 let safetyButton = document.querySelectorAll('.safe');
 let healthDisplay = document.querySelector('.health');
-let exit = document.querySelector('.exit');
-let mainBackground = document.getElementById('main');
 let allBackgrounds = document.querySelectorAll('section');
 let aTags = document.querySelectorAll('a');
 let story = document.querySelector('.typewriter');
@@ -23,11 +21,12 @@ let currentRoom = 'safe';
 
 
 /*----- cached element references -----*/
+let player = '';
 let satchel = [];
 let torch = 'torch';
 let raft = 'raft';
-let spear = 'Spear';
-let caveKey = 'Key To The Cave Exit';
+let spear = 'spear';
+let caveKey = 'key to the cave exit';
 
 
 
@@ -91,7 +90,7 @@ function updateStory(evt) {
             story.textContent = "it looks like I'm safe while I'm in this main room...";
             break;
         case '#crystals':
-            story.textContent = "something is etched on this wall";
+            story.textContent = "looks like there's a safe in here";
             break;
     }
 
@@ -111,15 +110,112 @@ function buttonInit() {      //initialize all buttons for click
     items.forEach( elem =>{ 
         elem.addEventListener('click', grabItem);
     })
+    enemies.forEach( elem =>{ 
+        elem.addEventListener('click', attack);
+    })
 };
 buttonInit();
 
-
+function attack(enemy) {
+    let thisEnemy = enemy.target.getAttribute('id');
+    let enemyImage = enemy.target;
+    console.log(thisEnemy);
+    switch(thisEnemy) {
+        case 'bat':
+            if (satchel.includes('torch')) {
+                story.textContent = "Your torch has illuminated the cave scaring away the bats!";
+                enemyImage.style.display='none';
+                let spearImage = document.getElementById('spear');
+                spearImage.style.display='inline';
+                break;
+            }
+                story.textContent = "nothing seems to be working!";
+                break;
+         
+       
+        case 'snake':
+                if (satchel.includes('raft')) {
+                    story.textContent = "You used the raft to float over the snake!";
+                    enemyImage.style.display='none';
+                    let torchImage = document.getElementById('torch');
+                    torchImage.style.display='inline';
+                    break;       
+                }
+                story.textContent = "nothing seems to be working!";
+                break;
+            
+       
+        case 'bear':
+                if (satchel.includes('spear')) {
+                    story.textContent = "You have plunged your spear deep into the bears chest, ending it's life";
+                    enemyImage.style.display='none';
+                    let keyImage = document.getElementById('key');
+                    keyImage.style.display='inline';
+                    break;
+                }
+                    story.textContent = "nothing seems to be working!";
+                    break;
+           
+    }
+}
 
 
 function grabItem(item) {
-    console.log(item);
-   // satchel.push(item);
+    let thisItem = item.target.getAttribute('id');
+    let itemImage = item.target;
+    console.log(thisItem);
+    switch(thisItem) {
+        case 'spear':
+            story.textContent = "You have grabbed a spear!";
+            satchel.push(spear);
+            itemImage.style.display='none';
+            console.log(satchel);
+            break;
+        case 'raft':
+            if(player !== 'satchel') {
+                story.textContent = "this looks handy but I can't carry it";
+                break;
+            } 
+            story.textContent = "You have grabbed a raft!";
+            satchel.push(raft);
+            itemImage.style.display='none';
+            break;
+        case 'key':
+            story.textContent = "You have grabbed a key!";
+            satchel.push(key);
+            itemImage.style.display='none';
+            break;
+        case 'torch':
+            story.textContent = "You have grabbed a torch!";
+            satchel.push(torch);
+            itemImage.style.display='none';
+            break;
+        case 'satchel':
+            story.textContent = "You have grabbed a satchel! You can now store 1 item at a time";
+             player = 'satchel';
+             itemImage.style.display='none';
+             let answer = window.confirm("It looks like there's a piece of paper in the satchel...read it?");
+             if (answer) {
+                 story.textContent = "It reads: Easy as A,B,C...";
+             }
+             else {
+                 story.textContent = "I'm not into reading, I hope I don't die in here...";
+             }
+             break;
+        case 'safe':
+           let safeAnswer = prompt('Enter the safe combination:');
+           if(safeAnswer === '123') {
+            story.textContent = "The safe opened!";
+            itemImage.style.display='none';
+            let raftImage = document.getElementById('raft');
+            raftImage.style.display = 'inline';
+
+           }
+           else {
+               story.textContent = "The safe won't open";
+           }
+           break;
+    }
 };
 
 
