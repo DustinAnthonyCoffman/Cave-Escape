@@ -21,6 +21,7 @@ body {
     height: 100vh;
     background-position-y: -10rem;
 }
+
 #right {
     display: block;
     background-image: url('https://i.imgur.com/KmJ6EVM.jpg');
@@ -78,7 +79,7 @@ body {
     display:inline;
 }
 
-/*
+
 .item:hover {
     cursor: pointer;
     background-color: rgb(222, 240, 140);
@@ -87,7 +88,7 @@ body {
         0 0 60px 30px rgb(177, 122, 34),  /* inner white */
         0 0 100px 60px rgb(255, 166, 0), /* middle magenta */
         0 0 140px 90px rgb(238, 255, 0); /* outer cyan */
-*/
+
     }
 
 
@@ -109,8 +110,8 @@ body {
     margin: 0;
     padding: 0;
     left: 100px;
-    height: 1300px;
-    width: 1300px;
+    height: 400px;
+    width: 400px;
     position: absolute;
   
 }
@@ -120,8 +121,10 @@ body {
     width: 200px;
     height: 200px;
 }
-/*
+
 #bat {
+        width:  200px;
+        height: 200px;
         animation-duration: 3s;
         animation-name: slidein;
       }
@@ -138,7 +141,7 @@ body {
         }
       }
 
-*/
+
 
 
 /*------ Buttons -------*/

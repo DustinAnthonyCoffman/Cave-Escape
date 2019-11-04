@@ -67,28 +67,55 @@ function reachSafety() {
 
 function updateStory(evt) {
     let screen = evt.target.getAttribute('href');
+    let snakeState = document.getElementById('snake');
+    let bearState = document.getElementById('bear');
+    let batState = document.getElementById('bat');
+   
     switch(screen) {
         case '#bottom':
             story.textContent = "nothing down here but rocks and old mining supplies...";
             break;
+        
         case '#top':
+                if (snakeState.style.display === 'none') {
+                    story.textContent = "Nothing here but a tranquil lake...";
+                    break;
+                }
             story.textContent = "(the snake lunges for an attack)";
             break;
+     
         case '#left':
+                if (batState.style.display === 'none') {
+                    story.textContent = "The bats are gone...for now...";
+                    break;
+
+                }
             story.textContent = "(bats swarm you in a flurry, biting at your neck)";
             break;
+        
         case '#right':
+                if (bearState.style.display === 'none') {
+                    story.textContent = "you notice the bear was just protecting it's babies...you monster";
+                    let babies = document.getElementById('babies');
+                    babies.style.display = 'inline';
+                    alert("you're the real monster");
+                    break;
+                }
             story.textContent = "(you notice a large beast before you...";
             break;
+     
         case '#secret':
             story.textContent = "looks like this tunnel leads on a ways...";
             break;
+
         case '#drawing':
             story.textContent = "(you notice a large drawing of a bear)";
             break;
+
         case '#main':
             story.textContent = "it looks like I'm safe while I'm in this main room...";
             break;
+
         case '#crystals':
             story.textContent = "looks like there's a safe in here";
             break;
@@ -119,7 +146,7 @@ buttonInit();
 function attack(enemy) {
     let thisEnemy = enemy.target.getAttribute('id');
     let enemyImage = enemy.target;
-    console.log(thisEnemy);
+
     switch(thisEnemy) {
         case 'bat':
             if (satchel.includes('torch')) {
@@ -127,9 +154,12 @@ function attack(enemy) {
                 enemyImage.style.display='none';
                 let spearImage = document.getElementById('spear');
                 spearImage.style.display='inline';
+                currentRoom = 'safe';
+                let leftRoom = document.getElementById('leftRoom');
+                leftRoom.removeEventListener('click', reduceHealth); 
                 break;
             }
-                story.textContent = "nothing seems to be working!";
+                story.textContent = "The bats begin to drain your blood";
                 break;
          
        
@@ -139,9 +169,13 @@ function attack(enemy) {
                     enemyImage.style.display='none';
                     let torchImage = document.getElementById('torch');
                     torchImage.style.display='inline';
+                    currentRoom = 'safe';
+                    let topRoom = document.getElementById('topRoom');
+                    topRoom.removeEventListener('click', reduceHealth);
+                    //change atag to be a different class
                     break;       
                 }
-                story.textContent = "nothing seems to be working!";
+                story.textContent = "The snake plunges it's fangs into you, you cry out";
                 break;
             
        
@@ -151,9 +185,13 @@ function attack(enemy) {
                     enemyImage.style.display='none';
                     let keyImage = document.getElementById('key');
                     keyImage.style.display='inline';
+                    currentRoom = 'safe';
+                    let rightRoom = document.getElementById('rightRoom');
+                    rightRoom.removeEventListener('click', reduceHealth);
+                    //change a tag to be a different class
                     break;
                 }
-                    story.textContent = "nothing seems to be working!";
+                    story.textContent = "The beast mauls you over and over";
                     break;
            
     }
