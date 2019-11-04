@@ -58,7 +58,7 @@ function reduceHealth () {
         else {
             clearInterval(deathTimer2);   
         }  
-    }, 10000000);    
+    }, 1000);    
 };
 
 
@@ -90,6 +90,9 @@ function updateStory(evt) {
         case '#main':
             story.textContent = "it looks like I'm safe while I'm in this main room...";
             break;
+        case '#crystals':
+            story.textContent = "something is etched on this wall";
+            break;
     }
 
 };
@@ -107,7 +110,7 @@ function buttonInit() {      //initialize all buttons for click
     })
     items.forEach( elem =>{ 
         elem.addEventListener('click', grabItem);
-    }
+    })
 };
 buttonInit();
 
