@@ -32,6 +32,39 @@ let caveKey = 'key to the cave exit';
 
 /*----- functions -----*/
 
+function animateEnemy(evt) {
+    let scene = evt.target.getAttribute('href');
+    switch(scene) {
+        case '#top':
+            let snakeAnimate = document.getElementById('snake');
+            snakeAnimate.classList.remove('enemy');
+            snakeAnimate.classList.add('snakeBite');
+            break;
+        case '#left':
+            let batAnimate = document.getElementById('bat');
+            batAnimate.classList.remove('enemy');
+            batAnimate.classList.add('batBite');
+            break;
+        case '#right':
+            let bearAnimate = document.getElementById('bear');
+            bearAnimate.classList.remove('enemy');
+            bearAnimate.classList.add('bearBite');
+            break;
+        
+        }
+};
+
+function resetEnemy() {
+    let snakeBack = document.getElementById('snake');
+    let batBack = document.getElementById('bat');
+    let bearBack = document.getElementById('bear');
+    snakeBack.classList.remove('snakeBite');
+    snakeAnimate.classList.add('enemy');   
+    batBack.classList.remove('batBite');
+    batAnimate.classList.add('enemy');
+    bearBack.classList.remove('bearBite');
+    bearAnimate.classList.add('enemy');
+};
 
 
 function reduceHealth () {
@@ -42,6 +75,15 @@ function reduceHealth () {
         if (currentRoom === 'danger') {
             healthInt -= 5;
             healthDisplay.innerHTML = healthInt.toString();
+            if (healthInt <  100) {
+                healthDisplay.style.color = 'yellow';
+            }
+            if (healthInt <=  75) {
+                healthDisplay.style.color = 'rgb(255, 81, 0)';
+            }
+            if (healthInt <= 30) {
+                healthDisplay.style.color = 'red';
+            }
             if (healthInt === 0) {  
                 
                 allBackgrounds.forEach(elem => { 
@@ -135,9 +177,11 @@ function buttonInit() {      //initialize all buttons for click
     })
     safetyButton.forEach( elem =>{
         elem.addEventListener('click', reachSafety);
+        elem.addEventListener('click', resetEnemy);
     })
     aTags.forEach( elem =>{
         elem.addEventListener('click', updateStory); 
+        elem.addEventListener('click', animateEnemy);
     })
     items.forEach( elem =>{ 
         elem.addEventListener('click', grabItem);
@@ -210,9 +254,9 @@ function grabItem(item) {
             story.textContent = "You have grabbed a spear!";
             satchel.push(spear);
             itemImage.style.display='none';
-            let satchelSpear = document.createElement('P');
-            satchelSpear.textContent = 'spear';
-            satchelSpear.display = 'inline';
+            let satchelSpear = document.createElement('img');
+            satchelSpear.classList.add('mini');
+            satchelSpear.src = 'https://i.imgur.com/8fw9zbA.png';
             satchelMenu.appendChild(satchelSpear);
             break;
         case 'raft':
@@ -223,33 +267,35 @@ function grabItem(item) {
             story.textContent = "You have grabbed a raft!";
             satchel.push(raft);
             itemImage.style.display='none';
-            let satchelRaft = document.createElement('P');
-            satchelRaft.textContent = 'raft';
-            satchelRaft.display = 'inline';
+            let satchelRaft = document.createElement('img');
+            satchelRaft.classList.add('mini');
+            satchelRaft.src = 'https://i.imgur.com/LnLgEPG.png';
             satchelMenu.appendChild(satchelRaft);
             break;
         case 'key':
             story.textContent = "You have grabbed a key!";
             satchel.push(key);
             itemImage.style.display='none';
-            let satchelKey = document.createElement('P');
-            satchelKey.textContent = 'key';
-            satchelKey.display = 'inline';
+            let satchelKey = document.createElement('img');
+            satchelKey.classList.add('mini');
+            satchelKey.src = 'https://i.imgur.com/R3xphG2.png';
             satchelMenu.appendChild(satchelKey);
             break;
         case 'torch':
             story.textContent = "You have grabbed a torch!";
             satchel.push(torch);
             itemImage.style.display='none';
-            let satchelTorch = document.createElement('P');
-            satchelTorch.textContent = 'torch';
-            satchelTorch.display = 'inline';
+            let satchelTorch = document.createElement('img');
+            satchelTorch.classList.add('mini');
+            satchelTorch.src = 'https://i.imgur.com/3yjxWtA.jpg';
             satchelMenu.appendChild(satchelTorch);
             break;
         case 'satchel':
             story.textContent = "You have grabbed a satchel! You can now store 1 item at a time";
              player = 'satchel';
              itemImage.style.display='none';
+             let satchelRender = document.getElementById('hover-target');
+             satchelRender.style.display='inline-block';
              let answer = window.confirm("It looks like there's a piece of paper in the satchel...read it?");
              if (answer) {
                  story.textContent = "It reads: Easy as A,B,C...";

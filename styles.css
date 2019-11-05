@@ -8,6 +8,12 @@ body {
     overflow: hidden;
 }
 
+
+
+
+
+
+
 /* ------ Section Styles --------*/
 #main { 
     display: block;
@@ -62,6 +68,15 @@ body {
     height: 100vh;
  
 }
+
+
+
+
+
+
+
+
+
 /*------ Items -------*/
 .item {
     position: absolute;
@@ -71,6 +86,13 @@ body {
     left: 500px;
     display: none;
 }
+
+.mini {
+    display: inline;
+    width: 50px;
+    height: 50px;
+}
+
 #satchel {
     display: inline;
 }
@@ -81,65 +103,107 @@ body {
 
 
 .item:hover {
-    cursor: pointer;
-    background-color: rgb(222, 240, 140);
-    color:  rgb(241, 227, 93);
-    box-shadow:
-        0 0 60px 30px rgb(177, 122, 34),  /* inner white */
-        0 0 100px 60px rgb(255, 166, 0), /* middle magenta */
-        0 0 140px 90px rgb(238, 255, 0); /* outer cyan */
+        cursor: pointer;
+        -webkit-filter: drop-shadow(100px 100px 50px rgb(255, 208, 1));
 
-    }
+        }
+
+
+
+
+
+
 
 
 
 /*------ Enemies ------*/
 
 
-.enemy:hover {
-    cursor: pointer;
-    background-color: rgb(231, 39, 14);
-    color:  rgb(241, 93, 93);
-    box-shadow:
-        0 0 60px 30px rgb(221, 143, 17),  /* inner white */
-        0 0 100px 60px rgb(255, 102, 0), /* middle magenta */
-        0 0 140px 90px rgb(255, 0, 0); /* outer cyan */
-}
+
 
 #bear {
     margin: 0;
     padding: 0;
     left: 100px;
-    height: 400px;
-    width: 400px;
+    height: 1000px;
+    width: 1000px;
     position: absolute;
   
 }
+
+.bearBite {
+    animation-duration: 3s;
+    animation-name: fadeIn;
+}
+.bearBite:hover {
+    cursor: pointer;
+    -webkit-filter: drop-shadow(100px 100px 50px rgba(255, 0, 0, 0.5));
+     filter: drop-shadow(50px 50px 25px rgba(223, 99, 17, 0.5));
+
+}
+      
+
+
 #snake {
     position: absolute;
-    left: 400px;
-    width: 200px;
-    height: 200px;
+    left: 600px;
+    width: 500px;
+    height: 500px;
+}
+.snakeBite {
+    
+    animation-duration: 1s;
+    animation-name: fadeIn;
 }
 
+.snakeBite:hover {
+    cursor: pointer;
+    -webkit-filter: drop-shadow(100px 100px 50px rgba(255, 0, 0, 0.5));
+     filter: drop-shadow(50px 50px 25px rgba(223, 99, 17, 0.5));
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+ } 
+
 #bat {
-        width:  200px;
-        height: 200px;
-        animation-duration: 3s;
-        animation-name: slidein;
+        position: absolute;
+        left: 400px;
+        width:  600px;
+        height: 400px;
       }
+     
+
+.batBite {
+  
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+
+.batBite:hover {
+    cursor: pointer;
+    -webkit-filter: drop-shadow(100px 100px 50px rgba(255, 0, 0, 0.5));
+     filter: drop-shadow(50px 50px 25px rgba(223, 99, 17, 0.5));
+}
       
-      @keyframes slidein {
-        from {
-          margin-left: 100%;
-          width: 300%; 
-        }
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+       
+    }
       
-        to {
+    to {
           margin-left: 0%;
-          width: 100%;
-        }
-      }
+      
+    }
+}
+
+
+
+
+
+
 
 
 
@@ -188,6 +252,8 @@ body {
 .safe:hover {
     background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
     background-color:#6c7c7c;
+    -webkit-filter: drop-shadow(100px 100px 50px rgba(154, 158, 146, 0.76));
+    filter: drop-shadow(50px 50px 25px rgba(255, 252, 250, 0.986));
 }
 
 .safe:active {
@@ -215,11 +281,78 @@ body {
 .danger:hover {
     background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
     background-color:#6c7c7c;
+    -webkit-filter: drop-shadow(100px 100px 50px rgba(154, 158, 146, 0.76));
+    filter: drop-shadow(50px 50px 25px rgba(255, 252, 250, 0.986));
 }
 .danger:active {
     position:relative;
     top:1px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*------- Satchel -------*/
+
+   
+    .satchelMenu {
+        display: none;
+        background-color: sienna;
+        border: solid 4px black;
+        position: fixed;
+        top: 410px;
+        left: 480px;
+        width: 500px;
+        height: 280px;
+    }
+    .satchelText {
+        animation: typing 3s steps(30, end), blink .75s step-end infinite;
+        padding-top: 10px;
+        color: lightgrey;
+        position: absolute;
+    }
+
+    #hover-target {
+        position: fixed;
+        left: 1300px;
+        box-shadow:inset 0px 1px 3px 0px #91b8b3;
+        background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+        background-color:#768d87;
+        border-radius:5px;
+        border:1px solid #566963;
+        display: none;
+        cursor:pointer;
+        color: rgb(95, 0, 144);
+        font-family:Arial;
+        font-size: 25px;
+        padding: 10px;
+        font-weight:bold;
+        text-decoration:none;
+        text-shadow:0px -1px 0px #2b665e;
+      
+    }
+    #hover-target:hover {
+        background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+        background-color:#6c7c7c;
+        -webkit-filter: drop-shadow(100px 100px 50px rgba(154, 158, 146, 0.76));
+        filter: drop-shadow(50px 50px 25px rgba(255, 252, 250, 0.986));
+    }
+
+  #hover-target:hover + .satchelMenu {
+        display: block;
+        cursor: pointer;
+    }   
+
+   
+
 
 
 
@@ -239,11 +372,7 @@ border: solid black;
 font-family: Courier, monospace;
 display: inline-block;
 }
-  .satchelMenu {
-      position: absolute;
 
-
-  }
 
 
   .health {
@@ -251,8 +380,14 @@ display: inline-block;
       top: 43px;
       left: 270px;
       margin: auto;  
-      color: rgb(95, 0, 144);
+      color: rgb(6, 126, 36);
       font-size: 3rem;
+  }
+
+  .health:hover {
+    cursor: pointer;
+    -webkit-filter: drop-shadow(100px 100px 50px rgba(154, 158, 146, 0.76));
+     filter: drop-shadow(50px 50px 25px rgba(255, 252, 250, 0.986));
   }
   .label {
       position: absolute;
@@ -260,21 +395,11 @@ display: inline-block;
       left: 50px;
       font-size: 3rem;
   }
-  
-    /* you might need this for hints 
-    .exit {
-        position: absolute;
-        top: 410px;
-        left: 220px;
-        height: 120px;
-    }
-
-    a:hover + .exit {
-        display: block;
-        cursor: pointer;
-        border: solid gold;
-    }
-    */
+  .label:hover {
+    cursor: pointer;
+    -webkit-filter: drop-shadow(100px 100px 50px rgba(154, 158, 146, 0.76));
+     filter: drop-shadow(50px 50px 25px rgba(255, 252, 250, 0.986));
+  }
  
   .footerBox {
       position: absolute;
@@ -292,6 +417,7 @@ display: inline-block;
     font-weight: 700;
     border-right: 4px solid orange;
     box-sizing: border-box;
+
 }
 
 @keyframes typing {
