@@ -115,7 +115,7 @@ function updateStory(evt) {
    
     switch(screen) {
         case '#bottom':
-            story.textContent = "nothing down here but rocks and old mining supplies...";
+            story.textContent = "nothing down here but old mining supplies...";
             break;
         
         case '#top':
