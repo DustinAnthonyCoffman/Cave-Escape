@@ -238,7 +238,7 @@ function attack(enemy) {
                     topRoom.removeEventListener('click', reduceHealth);
                     break;       
                 }
-                story.textContent = "The snake plunges it's fangs into you, you cry out like an idiot";
+                story.textContent = "The snake plunges it's fangs into you";
                 break;
             
        
@@ -318,7 +318,7 @@ function grabItem(item) {
             satchelMenu.appendChild(satchelTorch);
             break;
         case 'satchel':
-            story.textContent = "You have grabbed a satchel! You can now store 1 item at a time";
+            story.textContent = "You have grabbed a satchel! You can now store items";
              player = 'satchel';
              itemImage.style.display='none';
              let satchelRender = document.getElementById('hover-target');
