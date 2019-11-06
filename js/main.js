@@ -13,6 +13,7 @@ let satchelMenu = document.querySelector('.satchelMenu');
 
 
 
+
 /*----- app's state (variables) -----*/
 
 let health = document.querySelector('.health').textContent;
@@ -59,11 +60,8 @@ function resetEnemy() {
     let batBack = document.getElementById('bat');
     let bearBack = document.getElementById('bear');
     snakeBack.classList.remove('snakeBite');
-    snakeAnimate.classList.add('enemy');   
     batBack.classList.remove('batBite');
-    batAnimate.classList.add('enemy');
     bearBack.classList.remove('bearBite');
-    bearAnimate.classList.add('enemy');
 };
 
 
@@ -171,7 +169,7 @@ function updateStory(evt) {
 
 };
 
-function buttonInit() {      //initialize all buttons for click
+function buttonInit() {      
     dangerButton.forEach( elem =>{
         elem.addEventListener('click', reduceHealth);
     })
@@ -189,57 +187,86 @@ function buttonInit() {      //initialize all buttons for click
     enemies.forEach( elem =>{ 
         elem.addEventListener('click', attack);
     })
+    
 };
 
 buttonInit();
 
 function attack(enemy) {
     let thisEnemy = enemy.target.getAttribute('id');
-    let enemyImage = enemy.target;
 
     switch(thisEnemy) {
         case 'bat':
             if (satchel.includes('torch')) {
-                story.textContent = "Your torch has illuminated the cave scaring away the bats!";
-                enemyImage.style.display='none';
-                let spearImage = document.getElementById('spear');
-                spearImage.style.display='inline';
-                currentRoom = 'safe';
-                let leftRoom = document.getElementById('leftRoom');
-                leftRoom.removeEventListener('click', reduceHealth); 
-                break;
+                let batHealth = document.getElementById('batHealth')
+                let batLife = parseFloat(batHealth.textContent)
+                batLife = batLife - 10;
+                batHealth.textContent = batLife;
+                story.textContent = "You swing wildly at the bats!";
+                if (batLife <= 0) {
+                    story.textContent = "You're torch has illuminated the cave scaring the bats away!";
+                    let batEnemy = document.getElementById('bat');
+                    let $re = $(batEnemy);
+                     $re.fadeOut();
+                    let spearImage = document.getElementById('spear');
+                    let $spear = $(spearImage);
+                    $spear.fadeIn();
+                    let batDiv = document.getElementById('batDisplay');
+                    let $xo = $(batDiv);
+                    $xo.fadeOut();
+                    currentRoom = 'safe';
+                    let leftRoom = document.getElementById('leftRoom');
+                    leftRoom.removeEventListener('click', reduceHealth);
+                    break;
             }
-                story.textContent = "The bats begin to drain your blood";
+        }
+                story.textContent = "You swing wildly at the bats with your hands, they are undaunted";
                 break;
          
        
         case 'snake':
                 if (satchel.includes('raft')) {
                     story.textContent = "You used the raft to float over the snake!";
-                    enemyImage.style.display='none';
+                    let snakeEnemy = document.getElementById('snake');
+                    let $el = $(snakeEnemy);
+                    $el.fadeOut();
                     let torchImage = document.getElementById('torch');
-                    torchImage.style.display='inline';
+                    let $torch = $(torchImage);
+                    $torch.fadeIn();
                     currentRoom = 'safe';
                     let topRoom = document.getElementById('topRoom');
                     topRoom.removeEventListener('click', reduceHealth);
                     break;       
                 }
-                story.textContent = "The snake plunges it's fangs into you, you cry out";
+                story.textContent = "The snake plunges it's fangs into you, you cry out like an idiot";
                 break;
             
        
         case 'bear':
                 if (satchel.includes('spear')) {
-                    story.textContent = "You have plunged your spear deep into the bears chest, ending it's life";
-                    enemyImage.style.display='none';
-                    let keyImage = document.getElementById('key');
-                    keyImage.style.display='inline';
-                    currentRoom = 'safe';
-                    let rightRoom = document.getElementById('rightRoom');
-                    rightRoom.removeEventListener('click', reduceHealth);
-                    break;
+                    let bearHealth = document.getElementById('bearHealth')
+                    let bearLife = parseFloat(bearHealth.textContent)
+                    bearLife = bearLife - 5;
+                    bearHealth.textContent = bearLife;
+                    story.textContent = "You attack the bear!!";
+                    if (bearLife <= 0) {
+                        story.textContent = "You have plunged your spear deep into the bears chest, ending it's life";
+                        let bearEnemy = document.getElementById('bear');
+                        let $el = $(bearEnemy);
+                         $el.fadeOut();
+                        let keyImage = document.getElementById('key');
+                        let $key = $(keyImage);
+                        $key.fadeIn();
+                        let bearDiv = document.getElementById('bearDisplay');
+                        let $te = $(bearDiv);
+                        $te.fadeOut();
+                        currentRoom = 'safe';
+                        let rightRoom = document.getElementById('rightRoom');
+                        rightRoom.removeEventListener('click', reduceHealth);
+                        break;
                 }
-                    story.textContent = "The beast mauls you over and over";
+            }
+                    story.textContent = "Your hands do nothing against this monster";
                     break;
            
     }
@@ -287,7 +314,7 @@ function grabItem(item) {
             itemImage.style.display='none';
             let satchelTorch = document.createElement('img');
             satchelTorch.classList.add('mini');
-            satchelTorch.src = 'https://i.imgur.com/3yjxWtA.jpg';
+            satchelTorch.src = 'https://i.imgur.com/Z0nzsXW.png';
             satchelMenu.appendChild(satchelTorch);
             break;
         case 'satchel':
@@ -296,6 +323,7 @@ function grabItem(item) {
              itemImage.style.display='none';
              let satchelRender = document.getElementById('hover-target');
              satchelRender.style.display='inline-block';
+            //  let satchelAnswer = window.confirm("Look inside the satchel?");
              let answer = window.confirm("It looks like there's a piece of paper in the satchel...read it?");
              if (answer) {
                  story.textContent = "It reads: Easy as A,B,C...";
@@ -303,7 +331,7 @@ function grabItem(item) {
              else {
                  story.textContent = "I'm not into reading, I hope I don't die in here...";
              }
-             //footer gets satchel image?? or satchel h2?? ? ? 
+           
              break;
         case 'safe':
            let safeAnswer = prompt('Enter the safe combination:');
@@ -318,8 +346,17 @@ function grabItem(item) {
                story.textContent = "The safe won't open";
            }
            break;
+        case 'decoy':
+            let decoyAnswer = window.confirm('Reach into the satchel?');
+            if(decoyAnswer) {
+                story.textContent = "You reach in and get stung by a live scorpion!";
+                healthDisplay.textContent = '70';   
+            }
+            else {
+                story.textContent = "Who knows what's inside...";
+            }     
+            break;
     }
 };
 
 
-/*----- event listeners -----*/

@@ -12,8 +12,6 @@ body {
 
 
 
-
-
 /* ------ Section Styles --------*/
 #main { 
     display: block;
@@ -89,16 +87,28 @@ body {
 
 .mini {
     display: inline;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
 }
 
 #satchel {
+    margin-top: 300px;
+    display: inline;
+}
+#decoy {
+    position: absolute;
+    left: 900px;
+    margin-top: 500px;
     display: inline;
 }
 
 #safe {
+    margin-top: 300px;
     display:inline;
+}
+#raft {
+    margin-top: 300px;
+
 }
 
 
@@ -119,14 +129,29 @@ body {
 /*------ Enemies ------*/
 
 
+.enemyDisplay {
+        color: white;
+        font-size: 30px;
+        position: absolute;
+        left: 500px;
+        animation-duration: 10s;
+        animation-name: fadeIn;
+}
 
+.enemyDeath {
+   animation-name: fadeOut;
+}
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;} 
+ } 
 
 #bear {
     margin: 0;
     padding: 0;
-    left: 100px;
-    height: 1000px;
-    width: 1000px;
+    left: 400px;
+    height: 800px;
+    width: 800px;
     position: absolute;
   
 }
@@ -135,6 +160,7 @@ body {
     animation-duration: 3s;
     animation-name: fadeIn;
 }
+
 .bearBite:hover {
     cursor: pointer;
     -webkit-filter: drop-shadow(100px 100px 50px rgba(255, 0, 0, 0.5));
@@ -146,7 +172,7 @@ body {
 
 #snake {
     position: absolute;
-    left: 600px;
+    left: 450px;
     width: 500px;
     height: 500px;
 }
@@ -186,6 +212,7 @@ body {
     -webkit-filter: drop-shadow(100px 100px 50px rgba(255, 0, 0, 0.5));
      filter: drop-shadow(50px 50px 25px rgba(223, 99, 17, 0.5));
 }
+
       
 @keyframes slidein {
     from {
@@ -229,7 +256,8 @@ body {
 
 #crystalPath {
     position: absolute;
-    right: 800px;
+    right: 850px;
+    margin-top: 450px;
 }
 
 .safe {
@@ -305,19 +333,20 @@ body {
    
     .satchelMenu {
         display: none;
-        background-color: sienna;
-        border: solid 4px black;
+        background-image: url('https://i.imgur.com/wJwJhOH.jpg'); 
+        border: solid 2px black;
         position: fixed;
         top: 410px;
-        left: 480px;
+        left: 470px;
         width: 500px;
-        height: 280px;
+        height: 260px;
     }
     .satchelText {
-        animation: typing 3s steps(30, end), blink .75s step-end infinite;
         padding-top: 10px;
-        color: lightgrey;
-        position: absolute;
+        margin-top: 20px;
+        color: rgb(0, 0, 0);
+        position: relative;
+        float:right;
     }
 
     #hover-target {
@@ -372,7 +401,12 @@ border: solid black;
 font-family: Courier, monospace;
 display: inline-block;
 }
-
+#bg-player {
+    padding:0;
+    margin-top:720px;
+    position: fixed;
+    left: 1300px;
+}
 
 
   .health {
@@ -407,7 +441,7 @@ display: inline-block;
 
   }
 
-.typewriter{
+.typewriter {
     display: inline-block;
   	overflow: hidden;
   	letter-spacing: 2px;
@@ -417,6 +451,7 @@ display: inline-block;
     font-weight: 700;
     border-right: 4px solid orange;
     box-sizing: border-box;
+    margin-left: 15px;
 
 }
 

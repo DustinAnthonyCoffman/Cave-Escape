@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <script defer src="js/main.js"></script>
     <title>Cave Escape</title>
 </head>
 
 <body>
-
-       
+        <audio controls id="bg-player" src="fields.wav" autoplay loop volume=".3"></audio>
     <section id='main'>
     
             <button id='topRoom' class='danger'><a id='topLink' href='#top'>▲top</a> </button>
@@ -23,9 +23,9 @@
             <h2 id= 'hover-target'>Satchel</h2>
             <div class='satchelMenu'>
              <h2 class='satchelText'>This is my satchel, there are many like it but this one is mine...</h2>
-                   
-
                  </div>            
+                 <img id='decoy' class='item' src="https://i.imgur.com/VqMQOdI.png" alt="decoy"> 
+
 
                 <a id="secretRoom" class='blinker' href='#secret'>▲</a> </button>
 
@@ -35,13 +35,14 @@
     <section id='top'> 
             
           <img id='snake' class='enemy' src="https://i.imgur.com/2TArVgs.png" alt="snake"> 
-          <img id='torch' class='item' src="https://i.imgur.com/3yjxWtA.jpg" alt="torch"> 
+          <img id='torch' class='item' src="https://i.imgur.com/Z0nzsXW.png" alt="torch"> 
             <button class = 'safe'> <a href='#main'> ▲Back </a> </button>
             
         </section>
 
     <section id='left'> 
             <button class='safe'> <a href='#main'> ▲Back </a> </button>
+            <div id='batDisplay' class='enemyDisplay'> Health: <h2 id='batHealth'>100</h2> </div>
             <img id='bat' class='enemy' src="https://i.imgur.com/rjKJoUy.png" alt="bat"> 
             <img id='spear' class='item' src="https://i.imgur.com/8fw9zbA.png" alt="spear"> 
            
@@ -50,7 +51,8 @@
     
 
     <section id='right'> 
-            <img id='bear' class='enemy' src="https://i.imgur.com/sIk4udR.png" alt="bear"> 
+            <div id='bearDisplay' class='enemyDisplay'> Health: <h2 id='bearHealth'>100</h2> </div>
+            <img id='bear' class='enemy' src="https://i.imgur.com/SW9HRnH.png" alt="bear"> 
             <img id='babies' class='item' src="https://i.imgur.com/rrrk7CQ.jpg" alt= "babies">
             <img class='item' id='key' src="https://i.imgur.com/R3xphG2.png" alt="key"> 
             
@@ -90,11 +92,14 @@
             </section> 
 
    
-
+    
     <footer id= 'foot'>
         <h2 class= 'label'>Health:</h2>    
         <h2 class = 'health'>100</h2>
         <div class= 'footerBox'> <p class= 'typewriter'>I must get out of this cave...</p> </div>
-        </footer>
+           
+    </footer>
+    
+
 </body>
 </html>
