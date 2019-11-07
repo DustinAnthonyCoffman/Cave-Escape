@@ -7,6 +7,10 @@ Click about to find clues on how to leave the cave
 ![](https://i.imgur.com/VL1lZ3U.png)
 
 
+Descend into the depths of the cave to find valuable resources 
+![](https://i.imgur.com/tq6bi2G.png)
+
+
 
 Be careful, danger lurks around every corner
 ![](https://i.imgur.com/EjkJZKb.png)
