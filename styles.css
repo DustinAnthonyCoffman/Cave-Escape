@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     height:100%;
@@ -110,7 +109,20 @@ body {
     margin-top: 300px;
 
 }
+#torch {
+    margin-top: 400px;
+}
+#spear {
+    margin-top: 400px;
+}
+#key {
+    margin-top: 400px;
+}
+#babies {
+    margin-top: 400px;
+    left: 800px;
 
+}
 
 .item:hover {
         cursor: pointer;
@@ -258,6 +270,25 @@ body {
     position: absolute;
     right: 850px;
     margin-top: 450px;
+}
+
+#resetButton {
+    position: absolute;
+    left: 500px;
+    display: none;
+    font-size: 70px;
+    box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    background-color:#768d87;
+    border-radius:5px; 
+    border:1px solid #566963;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-weight:bold;
+    padding:11px 23px; 
+    text-decoration:none;
+    text-shadow:0px -1px 0px #2b665e;
 }
 
 .safe {
