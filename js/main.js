@@ -1,4 +1,5 @@
 
+
 /*----- constants -----*/
 let dangerButton = document.querySelectorAll('.danger');
 let safetyButton = document.querySelectorAll('.safe');
@@ -9,6 +10,7 @@ let story = document.querySelector('.typewriter');
 let items = document.querySelectorAll('.item');
 let enemies = document.querySelectorAll('.enemy');
 let satchelMenu = document.querySelector('.satchelMenu');
+let resetButton = document.getElementById('resetButton');
 
 
 
@@ -114,7 +116,7 @@ function updateStory(evt) {
    
     switch(screen) {
         case '#bottom':
-            story.textContent = "nothing down here but rocks and old mining supplies...";
+            story.textContent = "nothing down here but old mining supplies...";
             break;
         
         case '#top':
@@ -187,6 +189,7 @@ function buttonInit() {
     enemies.forEach( elem =>{ 
         elem.addEventListener('click', attack);
     })
+    resetButton.addEventListener('click', resetGame);
     
 };
 
@@ -197,32 +200,33 @@ function attack(enemy) {
 
     switch(thisEnemy) {
         case 'bat':
-            if (satchel.includes('torch')) {
-                let batHealth = document.getElementById('batHealth')
-                let batLife = parseFloat(batHealth.textContent)
-                batLife = batLife - 10;
-                batHealth.textContent = batLife;
-                story.textContent = "You swing wildly at the bats!";
-                if (batLife <= 0) {
-                    story.textContent = "You're torch has illuminated the cave scaring the bats away!";
-                    let batEnemy = document.getElementById('bat');
-                    let $re = $(batEnemy);
-                     $re.fadeOut();
-                    let spearImage = document.getElementById('spear');
-                    let $spear = $(spearImage);
-                    $spear.fadeIn();
-                    let batDiv = document.getElementById('batDisplay');
-                    let $xo = $(batDiv);
-                    $xo.fadeOut();
-                    currentRoom = 'safe';
-                    let leftRoom = document.getElementById('leftRoom');
-                    leftRoom.removeEventListener('click', reduceHealth);
-                    break;
-            }
-        }
-                story.textContent = "You swing wildly at the bats with your hands, they are undaunted";
+                if (satchel.includes('torch')) {
+                    story.textContent = "You wave your torch the bats!";
+                    let batHealth = document.getElementById('batHealth')
+                    let batLife = parseFloat(batHealth.textContent)
+                    batLife = batLife - 10;
+                    batHealth.textContent = batLife;
+                    if (batLife <= 0) {
+                        story.textContent = "You're torch has scared the bats away!";
+                        let batEnemy = document.getElementById('bat');
+                        let $re = $(batEnemy);
+                         $re.fadeOut();
+                        let spearImage = document.getElementById('spear');
+                        let $spear = $(spearImage);
+                        $spear.fadeIn();
+                        let batDiv = document.getElementById('batDisplay');
+                        let $xo = $(batDiv);
+                        $xo.fadeOut();
+                        currentRoom = 'safe';
+                        let leftRoom = document.getElementById('leftRoom');
+                        leftRoom.removeEventListener('click', reduceHealth);
+                        break;
+                }
+            } else {
+                story.textContent = "You swing wildly at the bats, they're unfazed";
                 break;
-         
+            }
+                break;
        
         case 'snake':
                 if (satchel.includes('raft')) {
@@ -244,13 +248,13 @@ function attack(enemy) {
        
         case 'bear':
                 if (satchel.includes('spear')) {
+                    story.textContent = "You attack the bear with your spear!!";
                     let bearHealth = document.getElementById('bearHealth')
                     let bearLife = parseFloat(bearHealth.textContent)
                     bearLife = bearLife - 5;
                     bearHealth.textContent = bearLife;
-                    story.textContent = "You attack the bear!!";
                     if (bearLife <= 0) {
-                        story.textContent = "You have plunged your spear deep into the bears chest, ending it's life";
+                        story.textContent = "You have plunged your spear deep into the bears chest";
                         let bearEnemy = document.getElementById('bear');
                         let $el = $(bearEnemy);
                          $el.fadeOut();
@@ -260,17 +264,23 @@ function attack(enemy) {
                         let bearDiv = document.getElementById('bearDisplay');
                         let $te = $(bearDiv);
                         $te.fadeOut();
+                        let babies = document.getElementById('babies');
+                        let $bearChildren = $(babies);
+                        $bearChildren.fadeIn();
                         currentRoom = 'safe';
                         let rightRoom = document.getElementById('rightRoom');
                         rightRoom.removeEventListener('click', reduceHealth);
                         break;
-                }
-            }
-                    story.textContent = "Your hands do nothing against this monster";
-                    break;
+                    }
+                 } else {
+                 story.textContent = "You're hands do nothing against this monster";
+                 break;
+                     }
+                break;
            
     }
-}
+};
+
 
 
 function grabItem(item) {
@@ -300,7 +310,7 @@ function grabItem(item) {
             satchelMenu.appendChild(satchelRaft);
             break;
         case 'key':
-            story.textContent = "You have grabbed a key!";
+            story.textContent = "You have grabbed the key to the cave!";
             satchel.push(key);
             itemImage.style.display='none';
             let satchelKey = document.createElement('img');
@@ -308,6 +318,22 @@ function grabItem(item) {
             satchelKey.src = 'https://i.imgur.com/R3xphG2.png';
             satchelMenu.appendChild(satchelKey);
             break;
+        case 'babies':
+                story.textContent = "I killed their mom in cold blood...";
+                let reset = window.confirm("The bear was just protecting it's children, looks like you're the real monster, adopt the babies?");
+                if(reset) {
+                    let endPage = document.getElementById('right');
+                    endPage.style.backgroundImage = 'url(https://i.imgur.com/7nlast9.jpg)';
+                    endPage.style.backgroundRepeat = 'no-repeat';
+                    let babiesSoccer = document.getElementById('babies');
+                    babiesSoccer.style.display = 'inline';
+                    babiesSoccer.removeEventListener('click', grabItem);
+                    story.textContent = "You made the right choice";
+                    let resetButton = document.getElementById('resetButton');
+                    resetButton.style.display = 'inline';
+                }
+                    break;
+                    
         case 'torch':
             story.textContent = "You have grabbed a torch!";
             satchel.push(torch);
@@ -318,21 +344,30 @@ function grabItem(item) {
             satchelMenu.appendChild(satchelTorch);
             break;
         case 'satchel':
-            story.textContent = "You have grabbed a satchel! You can now store items";
-             player = 'satchel';
-             itemImage.style.display='none';
-             let satchelRender = document.getElementById('hover-target');
-             satchelRender.style.display='inline-block';
-            //  let satchelAnswer = window.confirm("Look inside the satchel?");
-             let answer = window.confirm("It looks like there's a piece of paper in the satchel...read it?");
+             let answer = window.confirm("Look into the satchel?");
+            
              if (answer) {
-                 story.textContent = "It reads: Easy as A,B,C...";
+                let answerTake = window.confirm('It looks safe, take the satchel?');
+                if (answerTake) {
+                    story.textContent = "You have grabbed a satchel! You can now store items";
+                    player = 'satchel';
+                    itemImage.style.display='none';
+                    let satchelRender = document.getElementById('hover-target');
+                    satchelRender.style.display='inline-block';
+                    story.textContent = "There's a note in here, it reads: Easy as A,B,C...";
+                }
+                else {
+                    story.textContent = "I'm not carrying around a backpack";
+                    break;
+                } 
              }
              else {
-                 story.textContent = "I'm not into reading, I hope I don't die in here...";
+                story.textContent = "Who knows what's inside...";
+                 break;
              }
-           
-             break;
+                break;
+               
+        
         case 'safe':
            let safeAnswer = prompt('Enter the safe combination:');
            if(safeAnswer === '123') {
@@ -347,9 +382,9 @@ function grabItem(item) {
            }
            break;
         case 'decoy':
-            let decoyAnswer = window.confirm('Reach into the satchel?');
+            let decoyAnswer = window.confirm('Look into the satchel?');
             if(decoyAnswer) {
-                story.textContent = "You reach in and get stung by a live scorpion!";
+                story.textContent = "You've been stung by a scorpion health -30";
                 healthDisplay.textContent = '70';   
             }
             else {
@@ -359,4 +394,9 @@ function grabItem(item) {
     }
 };
 
+
+function resetGame() {
+    window.scrollTo(0, 0);
+    window.location.reload(true);
+};
 
